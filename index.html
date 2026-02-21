@@ -2,139 +2,283 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CHSL MVP UAT</title>
-
+  <title>CHSL MVP – UAT Access</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f5f5f5;
+      background: #f5f7f6;
+      color: #111827;
     }
-
-    .container {
+    header {
+      background: #0b7a3b;
+      padding: 1.5rem 1.75rem;
       text-align: center;
-      padding: 80px 20px;
     }
-
-    h1 {
-      font-size: 32px;
-      margin-bottom: 20px;
+    header img {
+      width: 140px;
+      height: auto;
+      margin-bottom: 0.75rem;
     }
-
-    button {
-      padding: 12px 24px;
-      font-size: 18px;
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #ffffff;
+      letter-spacing: 0.03em;
+    }
+    header p {
+      margin: 0.4rem 0 0;
+      color: #e5e7eb;
+      opacity: 0.9;
+    }
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1.5rem 3rem;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      padding: 1.75rem 1.75rem 2rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #e5e7eb;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: #0b7a3b;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.65rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.95rem;
       cursor: pointer;
-      background: #4a4aff;
-      color: white;
-      border: none;
-      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      font-weight: 500;
+    }
+    .btn-primary {
+      background: #0b7a3b;
+      color: #ffffff;
+      box-shadow: 0 8px 18px rgba(11, 122, 59, 0.35);
+    }
+    .btn-primary:hover {
+      background: #08612f;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(11, 122, 59, 0.45);
+    }
+    .btn-outline {
+      background: #ffffff;
+      color: #0b7a3b;
+      border-color: #0b7a3b;
+    }
+    .btn-outline:hover {
+      background: #0b7a3b;
+      color: #ffffff;
+    }
+    .note-section {
+      margin-top: 0.75rem;
+      padding: 0.75rem 0 0;
+      border-top: 1px dashed #e5e7eb;
+    }
+    .note-heading {
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      padding: 1.5rem 1rem 2rem;
     }
 
     /* Modal */
-    .modal {
-      display: none;
+    .modal-backdrop {
       position: fixed;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
     }
-
-    .modal-content {
-      background: white;
-      margin: 10% auto;
-      padding: 20px;
-      width: 90%;
-      max-width: 400px;
+    .modal {
+      background: #ffffff;
+      border-radius: 14px;
+      max-width: 420px;
+      width: 100%;
+      padding: 1.75rem 1.75rem 1.5rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.35);
+    }
+    .modal h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.2rem;
+      color: #0b7a3b;
+    }
+    .modal label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+      color: #374151;
+    }
+    .modal input {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
       border-radius: 8px;
-      text-align: left;
+      border: 1px solid #d1d5db;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      box-sizing: border-box;
     }
-
-    .modal-content h2 {
-      margin-top: 0;
-    }
-
-    .modal-content input {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0 16px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    .modal-content button {
-      width: 100%;
-      background: #4a4aff;
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>Welcome to CHSL MVP UAT</h1>
-    <button onclick="showModal()">Continue to MVP</button>
-  </div>
+  <header>
+    <img src="./assets/logo.jpg" alt="Minerva Ventures Logo" />
+    <h1>CHSL MVP – UAT</h1>
+    <p>Review the Product Note → Test the MVP → Submit Feedback</p>
+  </header>
 
-  <!-- Modal -->
-  <div id="accessModal" class="modal">
-    <div class="modal-content">
-      <h2>Enter Your Details</h2>
+  <main>
 
+    <!-- NEW MASTERS NOTE -->
+    <section class="card" style="border-left: 4px solid #0b7a3b;">
+      <h2>Important Note on Master Data</h2>
+      <p>
+        The master data included in this MVP (Vendors, Expense Heads, Banks, etc.) is
+        <strong>purely illustrative</strong> and provided only for functionality testing.
+        These masters will be <strong>fully customised for each society</strong> during implementation.
+      </p>
+    </section>
+
+    <!-- UPDATED PRODUCT NOTE -->
+    <section class="card">
+      <h2>Product Note</h2>
+
+      <div class="note-section">
+        <div class="note-heading">Business Context</div>
+        <p>
+          The CHSL MVP 1.001 addresses time lag and inefficiencies in accounting workflows across three key roles:
+          <strong>Society Office Clerical Staff</strong>, <strong>Backend Accounting Vendors</strong>, and
+          <strong>MC Members</strong>. The objective is to streamline processes, reduce delays, and improve clarity
+          in day‑to‑day financial operations.
+        </p>
+      </div>
+
+      <div class="note-section">
+        <div class="note-heading">Role‑Specific Challenges</div>
+        <p>
+          Clerical staff often face cumbersome, error‑prone processes. Backend accounting vendors depend on timely
+          and accurate data entry. MC Members require transparency and up‑to‑date financial visibility. The MVP
+          focuses on reducing friction across all three.
+        </p>
+      </div>
+
+      <div class="note-section">
+        <div class="note-heading">UX/UI Focus</div>
+        <p>
+          The MVP prioritizes usability for clerical staff through an intuitive interface, reduced cognitive load,
+          and “idiot‑proofing” measures such as guided prompts, validations, and clear error messages.
+        </p>
+      </div>
+
+      <div class="note-section">
+        <div class="note-heading">Testing Procedures</div>
+        <p>
+          Testers should validate:
+          <br>• Master data accuracy before voucher creation
+          <br>• Voucher creation across vendors, expense heads, and amounts
+          <br>• Cheque cancellation flow for compliance and reliability
+        </p>
+      </div>
+
+      <div class="note-section">
+        <div class="note-heading">Evaluation Metrics</div>
+        <p>
+          Evaluation should focus on clerical‑staff usability:
+          <br>• Speed of navigation between tasks
+          <br>• Reduction and simplification of steps
+          <br>• Clarity of workflows, prompts, and error handling
+        </p>
+      </div>
+
+      <p style="font-size: 0.85rem; color: #6b7280; margin-top: 0.75rem;">
+        Keep this page open while testing. The MVP will open in a new tab.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Start UAT</h2>
+      <p>
+        Click below to begin. You will be asked to enter your name and email before accessing the MVP.
+      </p>
+      <button id="btn-test-mvp" class="btn btn-primary">Test MVP</button>
+    </section>
+
+    <section class="card">
+      <h2>Feedback Form</h2>
+      <p>
+        After completing your testing, please submit your feedback using the form below.
+      </p>
+      <a href="https://forms.gle/QZDM2XXhGySwkeS89" target="_blank" class="btn btn-outline">
+        Open Feedback Form
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    Minerva Ventures · CHSL MVP UAT · For invited testers only
+  </footer>
+
+  <div class="modal-backdrop" id="access-modal">
+    <div class="modal">
+      <h3>Register for UAT</h3>
       <form id="access-form">
-        <label>Full Name</label>
+        <label for="tester-name">Full Name *</label>
         <input type="text" id="tester-name" required />
 
-        <label>Email</label>
+        <label for="tester-email">Email *</label>
         <input type="email" id="tester-email" required />
 
-        <button type="submit">Continue</button>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" id="cancel-access">Cancel</button>
+          <button type="submit" class="btn btn-primary">Continue to MVP</button>
+        </div>
       </form>
     </div>
   </div>
 
   <script>
-    const MVP_URL = "https://minvenllp-hub.github.io/chslmvp-uat/mvp/";
+    const MVP_URL = "./mvp/index.html";
 
     function showModal() {
-      document.getElementById("accessModal").style.display = "block";
+      document.getElementById("access-modal").style.display = "flex";
     }
 
     function hideModal() {
-      document.getElementById("accessModal").style.display = "none";
+      document.getElementById("access-modal").style.display = "none";
     }
 
-    // ⭐ LOGGING + REDIRECT HANDLER
-    document.getElementById("access-form").addEventListener("submit", async function (e) {
+    document.getElementById("btn-test-mvp").addEventListener("click", showModal);
+    document.getElementById("cancel-access").addEventListener("click", hideModal);
+
+    document.getElementById("access-form").addEventListener("submit", function (e) {
       e.preventDefault();
-
-      const name = document.getElementById("tester-name").value;
-      const email = document.getElementById("tester-email").value;
-      const timestamp = new Date().toISOString();
-
-      // ⭐ GitHub Action Trigger
-      await fetch("https://api.github.com/repos/minvenllp-hub/chslmvp-uat/actions/workflows/log-access.yml/dispatches", {
-        method: "POST",
-        headers: {
-          "Accept": "application/vnd.github+json",
-          "Authorization": "Bearer <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>"
-        },
-        body: JSON.stringify({
-          ref: "main",
-          inputs: { name, email, timestamp }
-        })
-      });
-
       hideModal();
       window.open(MVP_URL, "_blank", "noopener");
     });
